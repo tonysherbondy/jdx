@@ -27,6 +27,31 @@ export default Ember.Component.extend({
     toggleDistrictVisibility: function() {
       this.toggleProperty('isAllDistrictVisibility');
       return false;
+    },
+    selectAllFederal: function() {
+      this.get('federalJDXs').forEach((court) => court.set('isSelected', true));
+      return false;
+    },
+    selectRelatedFederal: function() {
+      // For any selected court
+      var federalJDXs = this.get('federalJDXs');
+      this.get('jdxs').filterBy('isSelected').forEach((court) => {
+        // Select every circuit of the selected court
+        var circuits = court.get('circuits') || [];
+        circuits.forEach((circuitName) => {
+          var federal = federalJDXs.findBy('name', circuitName);
+          federal.set('isSelected', true);
+        });
+      });
+      return false;
+    },
+    selectAllState: function() {
+      this.get('stateJDXs').forEach((court) => court.set('isSelected', true));
+      return false;
+    },
+    clearSelected: function() {
+      this.get('jdxs').forEach((court) => court.set('isSelected', false));
+      return false;
     }
   }
 });
