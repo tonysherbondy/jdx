@@ -1,0 +1,8 @@
+li {
+  cursor: pointer;
+  width: 200px;
+}
+
+li.is-selected {
+  background-color: rgb(132, 132, 194);
+}

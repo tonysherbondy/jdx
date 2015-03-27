@@ -1,0 +1,12 @@
+<h3>Federal</h3>
+{{jdx-list courts=federalJDXs}}
+
+{{#if isAnyDistrictVisible}}
+  <h3>District</h3>
+  {{jdx-list courts=visibleDistricts}}
+{{/if}}
+
+<h3>State</h3>
+{{jdx-list courts=stateJDXs}}
+
+<button {{action 'toggleDistrictVisibility'}}>{{allVisibilityButtonName}}</button>
